@@ -1,0 +1,217 @@
+/* =========================================
+   Custom Properties (Token)
+   ========================================= */
+:root {
+  --color-bg: #f3f4f6;          
+  --color-card-bg: #ffffff;     
+  --color-text: #1f2937;        
+  --color-text-muted: #6b7280;  
+  --color-primary: #2563eb;     
+  --color-primary-hover: #1d4ed8;
+  --color-border: #e5e7eb;
+  --color-border-featured: #2563eb;
+  
+  --radius-card: 12px;
+  --radius-button: 6px;
+  
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  --font-base: system-ui, -apple-system, sans-serif;
+}
+
+/* =========================================
+   Global Reset & Box Model
+   ========================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+img, picture {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================================
+   Layout Container
+   ========================================= */
+.container {
+  width: min(100% - 2rem, 1120px);
+  margin-inline: auto;
+}
+
+/* =========================================
+   Header & Footer
+   ========================================= */
+.site-header {
+  background-color: var(--color-card-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--spacing-md);
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--color-primary);
+  font-size: 1.125rem;
+}
+
+.site-header nav a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.site-header nav a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.site-footer {
+  padding-block: var(--spacing-xl);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xl);
+}
+
+/* =========================================
+   Pricing Section
+   ========================================= */
+.pricing {
+  padding-block: var(--spacing-xl);
+}
+
+.pricing h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  font-size: 1.875rem;
+}
+
+.pricing-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+}
+
+/* =========================================
+   Price Card (Reusable Class)
+   ========================================= */
+.price-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--spacing-lg);
+  flex: 1 1 280px; /* Memenuhi lebar, minimal 280px agar tidak overflow di 320px */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.price-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.price-card .price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-primary);
+}
+
+.price-card ul {
+  list-style: none;
+  margin-bottom: var(--spacing-lg);
+  flex-grow: 1; /* Mendorong tombol ke bawah agar sejajar */
+}
+
+.price-card li {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.price-card li::before {
+  content: "✓";
+  color: var(--color-primary);
+  margin-right: var(--spacing-sm);
+  font-weight: bold;
+}
+
+/* =========================================
+   Modifier: Featured Card
+   ========================================= */
+.price-card--featured {
+  border-color: var(--color-border-featured);
+  border-width: 2px;
+}
+
+.badge {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  align-self: flex-start;
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* =========================================
+   Button Component
+   ========================================= */
+.button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.75rem var(--spacing-md);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: var(--radius-button);
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* =========================================
+   Responsive Breakpoint
+   ========================================= */
+/* Pada lebar kecil, card tersusun satu kolom karena flex-wrap */
+/* Pada ruang yang cukup (>= 768px), card membentuk satu baris */
+@media (min-width: 768px) {
+  .pricing-list {
+    flex-wrap: nowrap; /* Mencegah wrapping agar ketiga card sejajar */
+  }
+}
