@@ -1,0 +1,466 @@
+:root {
+  --warna-utama: #2e5e44;        
+  --warna-utama-poek: #1f4230;  
+  --warna-aksen: #d98e14;      
+  --warna-teks: #14201a;         
+  --warna-teks-lembut: #4b5a51;
+  --warna-latar: #ecefe6;        
+  --warna-bidang: #ffffff;
+  --warna-garis: #cfd8c6;
+
+  --spasi: 1rem;
+  --spasi-sedang: 1.5rem;
+  --spasi-besar: 3rem;
+
+  --radius: 10px;
+  --lebar-konten: 1120px;
+
+  --font-judul: "Lora", Georgia, "Times New Roman", serif;
+  --font-teks: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-aksara: "Noto Sans Sundanese", "Noto Sans", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1, h2, h3,
+p, ul, ol, dl, dd, figure, blockquote {
+  margin: 0;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+body {
+  font: 1rem/1.65 var(--font-teks);
+  color: var(--warna-teks);
+  background-color: var(--warna-latar);
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-judul);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--warna-utama-poek);
+}
+
+h1 {
+  font-size: clamp(1.9rem, 5.5vw, 3.1rem);
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  max-width: 62ch;
+}
+
+b {
+  font-weight: 600;
+}
+
+a {
+  color: var(--warna-utama);
+}
+
+.container {
+  width: min(100% - 2rem, var(--lebar-konten));
+  margin-inline: auto;
+}
+
+.narrow {
+  width: min(100% - 2rem, 46rem);
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--warna-bidang);
+  padding: var(--spasi);
+  z-index: 10;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--warna-aksen);
+  outline-offset: 3px;
+}
+
+.site-header {
+  background: var(--warna-bidang);
+  border-bottom: 1px solid var(--warna-garis);
+}
+
+.header-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spasi);
+  padding-block: 0.9rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-judul);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--warna-utama-poek);
+  text-decoration: none;
+}
+
+.brand-mark {
+  font-family: var(--font-aksara);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--warna-aksen);
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.3rem;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.35rem 0;
+  color: var(--warna-teks-lembut);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover {
+  color: var(--warna-utama);
+  border-bottom-color: var(--warna-aksen);
+}
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.4rem;
+  background: var(--warna-utama);
+  color: var(--warna-bidang);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius);
+}
+
+.button:hover {
+  background: var(--warna-utama-poek);
+}
+
+.button-terang {
+  background: var(--warna-aksen);
+  color: var(--warna-teks);
+}
+
+.button-terang:hover {
+  background: #b87508;
+  color: var(--warna-bidang);
+}
+
+.link-quiet {
+  color: var(--warna-teks-lembut);
+}
+
+.hero {
+  padding-block: var(--spasi-besar);
+}
+
+.hero-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spasi-besar);
+}
+
+.hero-lead {
+  margin-top: var(--spasi-sedang);
+  font-size: 1.1rem;
+  color: var(--warna-teks-lembut);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spasi-sedang);
+  margin-top: var(--spasi-sedang);
+}
+
+.specimen {
+  background: var(--warna-bidang);
+  border: 1px solid var(--warna-garis);
+  border-top: 4px solid var(--warna-aksen);
+  border-radius: var(--radius);
+  padding: var(--spasi-sedang);
+}
+
+.specimen-word {
+  font-family: var(--font-aksara);
+  font-size: clamp(2.8rem, 12vw, 4.5rem);
+  line-height: 1.4;
+  color: var(--warna-utama);
+  text-align: center;
+  margin-bottom: var(--spasi);
+}
+
+.specimen-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  padding-bottom: var(--spasi-sedang);
+  border-bottom: 1px solid var(--warna-garis);
+}
+
+.specimen-parts li {
+  flex: 0 1 5rem;
+  text-align: center;
+  padding: 0.5rem 0.3rem;
+  background: var(--warna-latar);
+  border-radius: 6px;
+}
+
+.glyph {
+  display: block;
+  font-family: var(--font-aksara);
+  font-size: 1.7rem;
+  line-height: 1.5;
+  color: var(--warna-utama);
+}
+
+.latin {
+  font-size: 0.9rem;
+  color: var(--warna-teks-lembut);
+}
+
+.specimen figcaption {
+  margin-top: var(--spasi-sedang);
+  font-size: 0.95rem;
+  color: var(--warna-teks-lembut);
+}
+
+.section {
+  padding-block: var(--spasi-besar);
+}
+
+.section-alt {
+  background: var(--warna-bidang);
+  border-block: 1px solid var(--warna-garis);
+}
+
+.section-lead {
+  margin-top: 0.75rem;
+  color: var(--warna-teks-lembut);
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: var(--spasi-sedang);
+  margin-top: var(--spasi-besar);
+}
+
+.card {
+  flex: 1 1 15rem;
+  min-width: 0;
+  background: var(--warna-bidang);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius);
+  padding: var(--spasi-sedang);
+}
+
+.card h3 {
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--warna-aksen);
+}
+
+.card p {
+  margin-top: 0.9rem;
+  font-size: 0.98rem;
+  color: var(--warna-teks-lembut);
+}
+
+.jadwal {
+  margin-top: var(--spasi-besar);
+  border-top: 1px solid var(--warna-garis);
+}
+
+.jadwal-baris {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-block: var(--spasi-sedang);
+  border-bottom: 1px solid var(--warna-garis);
+}
+
+.jadwal dt {
+  font-family: var(--font-judul);
+  font-weight: 600;
+  color: var(--warna-utama);
+  flex: 0 0 12rem;
+}
+
+.jadwal dd {
+  margin: 0;
+  color: var(--warna-teks-lembut);
+}
+
+.kutipan {
+  padding-left: var(--spasi-sedang);
+  border-left: 4px solid var(--warna-aksen);
+}
+
+.kutipan p {
+  font-family: var(--font-judul);
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  line-height: 1.5;
+  color: var(--warna-utama-poek);
+}
+
+.kutipan footer {
+  margin-top: var(--spasi);
+  font-size: 0.95rem;
+  color: var(--warna-teks-lembut);
+}
+
+
+.cerita {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spasi-sedang);
+}
+
+.cerita-foto {
+  margin: 0;
+}
+
+.cerita-foto img {
+  width: 100%;
+  aspect-ratio: 4 / 3;      
+  object-fit: cover;      
+  border-radius: var(--radius);
+  border: 1px solid var(--warna-garis);
+}
+
+.cerita-foto figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--warna-teks-lembut);
+}
+
+.cta {
+  background: var(--warna-utama-poek);
+  color: var(--warna-latar);
+}
+
+.cta h2 {
+  color: var(--warna-bidang);
+}
+
+.cta p {
+  margin-top: var(--spasi);
+  color: #d6e0d8;
+}
+
+.cta-catatan {
+  font-size: 0.95rem;
+}
+
+.site-footer {
+  background: var(--warna-bidang);
+  border-top: 1px solid var(--warna-garis);
+  padding-block: var(--spasi-sedang);
+}
+
+.footer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem var(--spasi-sedang);
+  font-size: 0.95rem;
+  color: var(--warna-teks-lembut);
+}
+
+@media (min-width: 640px) {
+  .card-list {
+    flex-direction: row;
+  }
+
+  .jadwal-baris {
+    flex-direction: row;
+    gap: var(--spasi-sedang);
+  }
+
+  .cerita {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .cerita-foto {
+    flex: 0 0 40%;
+  }
+
+  .kutipan {
+    flex: 1 1 auto;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero-grid {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .hero-text {
+    flex: 1 1 58%;
+  }
+
+  .specimen {
+    flex: 1 1 42%;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
