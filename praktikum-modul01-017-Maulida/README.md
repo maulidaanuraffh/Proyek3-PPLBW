@@ -55,7 +55,4 @@ lupa menambahkan `flex-wrap` membuat saya memahami cara kerja *main axis* dan
 dan memastikan semua elemen interaktif memiliki indikator fokus yang jelas.
 
 ## Log AI atau Sumber Bantuan
-Saya tidak menggunakan AI dalam pengerjaan tugas ini. Saya menggunakan dokumentasi
-MDN Web Docs untuk memahami `flexbox`, `box-sizing`, dan `media query`. Debugging
-dilakukan dengan DevTools (tab Elements, Console, dan Network) serta validator W3C
-untuk memastikan tidak ada error struktur.
+Menggunakan Claude untuk diskusi dan pemberian clue untuk memahami pemetaan elemen semantik dan konsep CSS (cascade, box model, flexbox) secara bertahap. Debugging dilakukan dengan DevTools (tab Elements, Console, dan Network) serta validator W3C untuk memastikan tidak ada error struktur.
