@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Mahasiswa</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <h1>Profil Mahasiswa</h1>
-        <nav aria-label="Navigasi profil">
-            <a href="#tentang">Tentang</a>
-            <a href="#keterampilan">Keterampilan</a>
-            <a href="#kontak">Kontak</a>
-        </nav>
+        <div class="container nav-wrapper">
+            <h1>Profil Mahasiswa</h1>
+            <nav aria-label="Navigasi profil">
+                <a href="#tentang" class="nav-link">Tentang</a>
+                <a href="#keterampilan" class="nav-link">Keterampilan</a>
+                <a href="#kontak" class="nav-link">Kontak</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section id="tentang">
+    <main class="container">
+        <section id="tentang" class="card">
             <h2>Tentang Saya</h2>
             <img src="assets/profile.png" alt="Foto profil mahasiswa D3 Teknik Informatika">
             <p>Saya mahasiswa D3 Teknik Informatika yang sedang belajar web.</p>
         </section>
 
-        <section id="keterampilan">
+        <section id="keterampilan" class="card">
             <h2>Keterampilan</h2>
             <ul>
                 <li>HTML</li>
@@ -31,14 +34,16 @@
             </ul>
         </section>
 
-        <section id="kontak">
+        <section id="kontak" class="card">
             <h2>Kontak</h2>
             <p><a href="mailto:mahasiswa@example.com">Kirim email</a></p>
         </section>
     </main>
 
     <footer>
-        <p>2026 - Profil Mahasiswa</p>
+        <div class="container">
+            <p>2026 - Profil Mahasiswa</p>
+        </div>
     </footer>
 </body>
 </html>
