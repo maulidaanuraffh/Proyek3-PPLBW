@@ -65,12 +65,3 @@ saya pakai adalah **Claude** dan **DeepSeek**. Saya manfaatkan keduanya untuk:
 Semua keputusan akhir tetap saya ambil sendiri. Saya cek ulang setiap saran AI
 dengan uji coba di browser dan validator. Dokumentasi resmi seperti MDN juga
 saya jadikan rujukan utama.
-
-## Struktur Folder
-modul1_nim_nama/
-├── index.html
-├── style.css
-├── README.md
-├── assets/
-│ └── rani-latihan.jpg
-
