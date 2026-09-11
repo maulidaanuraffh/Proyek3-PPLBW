@@ -86,12 +86,21 @@ main {
     gap: var(--spacing-lg); /*jarak antar kartu konsisten*/
 }
 
+.card-list {
+    display: flex;
+    flex-direction: column; /* Default: satu kolom untuk mobile */
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;        /* Mengizinkan wrap jika ruang tidak cukup */
+}
+
 .card {
     background-color: var(--color-surface);
     padding: var(--spacing-xl);
     border-radius: var(--radius-card);
     border: 1px solid #e5e7eb;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    flex: 1 1 300px;
+    overflow-wrap: break-word;
 }
 
 h2 {
@@ -149,4 +158,10 @@ footer {
     text-align: center;
     font-size: 0.875rem;
     color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+    .card-list {
+        flex-direction: row; /* Mengubah arah layout menjadi baris */
+    }
 }
