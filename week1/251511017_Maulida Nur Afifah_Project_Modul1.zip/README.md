@@ -41,7 +41,7 @@ mobile-first, tanpa framework.
 
 Screenshot ada di folder `evidence/`.
 
-## Refleksi Belajar (250-350 kata)
+## Refleksi Belajar
 Praktikum ini mengajarkan bahwa struktur HTML yang semantik itu bukan cuma
 soal "rapi", tapi beneran ngaruh ke aksesibilitas. Terasa penting ketika coba navigasi pakai
 keyboard `:focus-visible` dan urutan heading yang
