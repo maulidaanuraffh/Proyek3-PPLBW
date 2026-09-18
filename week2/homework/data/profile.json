@@ -1,0 +1,10 @@
+{
+  "nama": "Maulida Nur",
+  "bio": "Mahasiswa Teknik Informatika yang tertarik pada bidang Mobile Development dan UI/UX Design.",
+  "foto": "me.png",
+  "keterampilan": [
+    "HTML Semantik",
+    "CSS Responsif",
+    "Vanilla JavaScript"
+  ]
+}

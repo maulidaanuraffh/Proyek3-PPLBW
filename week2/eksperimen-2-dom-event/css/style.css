@@ -83,3 +83,95 @@ body.is-active .praktikum-card {
 body.is-active .counter { 
   color: #d1d5db; 
 } 
+
+.accordion-section {
+  margin-top: 32px;
+}
+
+.accordion-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.accordion {
+  background-color: #ffffff;
+  border: 2px solid #d1d5db;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: background-color 200ms, border-color 200ms;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #d1d5db;
+}
+
+.accordion-item:last-child {
+  border-bottom: 0;
+}
+
+.accordion-header {
+  margin: 0;
+}
+
+.accordion-trigger {
+  width: 100%;
+  text-align: left;
+  padding: 16px 20px;
+  background: none;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2563eb;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordion-trigger:hover,
+.accordion-trigger:focus-visible {
+  background-color: #f9fafb;
+  outline: none;
+}
+
+.accordion-trigger:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: -3px;
+}
+
+.accordion-trigger::after {
+  content: '▶';
+  font-size: 0.75rem;
+  transition: transform 200ms ease;
+  color: #6b7280;
+}
+
+.accordion-trigger[aria-expanded="true"]::after {
+  transform: rotate(90deg);
+}
+
+.accordion-content {
+  padding: 0 20px 16px 20px;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+body.is-active .accordion {
+  border-color: #60a5fa;
+  background-color: #1f2937;
+}
+
+body.is-active .accordion-item {
+  border-color: #4b5563;
+}
+
+body.is-active .accordion-trigger {
+  color: #60a5fa;
+}
+
+body.is-active .accordion-trigger:hover {
+  background-color: #374151;
+}
+
+body.is-active .accordion-content {
+  color: #d1d5db;
+}
