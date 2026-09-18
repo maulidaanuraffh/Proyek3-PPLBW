@@ -1,0 +1,171 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --text-color: #1f2937;
+  --text-muted: #4b5563;
+  --border-color: #d1d5db;
+  --primary-color: #2563eb;
+  --danger-color: #dc2626;
+}
+
+/* Variabel Warna Khusus Mode Gelap */
+body.dark-theme {
+  --bg-color: #111827;
+  --card-bg: #1f2937;
+  --text-color: #f9fafb;
+  --text-muted: #9ca3af;
+  --border-color: #4b5563;
+  --primary-color: #60a5fa;
+  --danger-color: #ef4444;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 200ms, color 200ms;
+}
+
+.container {
+  width: min(92%, 500px);
+  margin-inline: auto;
+  padding-block: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Kontrol Utama Tombol */
+button {
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-primary { background-color: var(--primary-color); color: #fff; }
+.btn-secondary { background-color: #6b7280; color: #fff; margin: flex-start; }
+
+/* Status Box */
+.status-box {
+  padding: 12px;
+  border-left: 4px solid #6b7280;
+  background-color: var(--card-bg);
+  font-weight: 500;
+}
+.status-box[data-state="loading"] { border-color: #d97706; color: #d97706; }
+.status-box[data-state="success"] { border-color: #16a34a; color: #16a34a; }
+.status-box[data-state="error"] { border-color: var(--danger-color); color: var(--danger-color); }
+
+/* Komponen Kartu Profil */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #e5e7eb;
+  margin-bottom: 16px;
+  border: 3px solid var(--primary-color);
+}
+
+.bio {
+  color: var(--text-muted);
+  margin-block: 8px 20px;
+  line-height: 1.4;
+}
+
+.btn-detail-toggle {
+  background-color: var(--primary-color);
+  color: white;
+  width: 100%;
+}
+
+/* Konten Daftar Keterampilan */
+.profile-detail {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.profile-detail h2 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.skill-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: var(--bg-color);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.btn-hapus {
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  background-color: var(--danger-color);
+  color: white;
+}
+
+/* Desain Komponen Form */
+.skill-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group {
+  display: flex;
+  gap: 8px;
+}
+
+.skill-form input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.skill-form input[aria-invalid="true"] {
+  border-color: var(--danger-color);
+  outline-color: var(--danger-color);
+}
+
+.btn-add { background-color: #10b981; color: white; }
+.error-text { margin: 0; font-size: 0.85rem; color: var(--danger-color); font-weight: 500; }
+.pesan-kosong { color: var(--text-muted); font-style: italic; text-align: center; padding: 12px; }
