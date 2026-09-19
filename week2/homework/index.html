@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <main class="container">
+    <div id="status-info" class="status-box" data-state="idle">Siap memuat data.</div>
+    <button id="btn-coba-lagi" class="btn-primary" type="button" hidden>Coba Lagi</button>
+    <button id="btn-tema" class="btn-secondary" type="button">Ganti Tema</button>
+
+    <article id="profile-card" class="card" hidden>
+      <div class="profile-header">
+        <img id="foto-profil" src="" alt="Foto Profil" class="avatar">
+        <h1 id="nama-profil">Nama Memuat...</h1>
+        <p id="bio-profil" class="bio">Bio Memuat...</p>
+        
+        <button id="btn-detail" class="btn-detail-toggle" type="button" aria-expanded="false" aria-controls="panel-detail">
+          Lihat Detail
+        </button>
+      </div>
+
+      <div id="panel-detail" class="profile-detail" hidden>
+        <h2>Keterampilan Pribadi</h2>
+        <ul id="daftar-skill" class="skill-list">
+          <!-- Item keterampilan dimasukkan dinamis lewat JS -->
+        </ul>
+
+        <form id="form-skill" class="skill-form" novalidate>
+          <label for="input-skill">Tambah Keterampilan Baru:</label>
+          <div class="form-group">
+            <input id="input-skill" type="text" placeholder="Contoh: React, Python" aria-invalid="false" aria-describedby="error-skill">
+            <button id="btn-tambah" type="submit" class="btn-add">Tambah</button>
+          </div>
+          <p id="error-skill" class="error-text" aria-live="polite"></p>
+        </form>
+      </div>
+    </article>
+  </main>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>

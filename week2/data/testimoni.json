@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nama": "Rani Nurhasanah",
+    "jurusan": "Teknik Informatika",
+    "teks": "Di rumah aku ngomong Sunda tiap hari. Baru di sini aku sadar aku nggak pernah bisa membaca Sunda. Rasanya kayak nemu setengah bagian diri sendiri yang ketinggalan.",
+    "foto": "assets/rani-latihan.jpg"
+  },
+  {
+    "id": 2,
+    "nama": "James ",
+    "jurusan": "Teknik Mesin",
+    "teks": "Awalnya gabung divisi kesenian cuma iseng karena nggak punya kacapi. Ternyata difasilitasi penuh komunitas, sekarang malah ketagihan ikut tembang Cianjuran.",
+    "foto": "assets/james-belajar.jpg"
+  },
+  {
+    "id": 3,
+    "nama": "Louis",
+    "jurusan": "Administrasi Niaga",
+    "teks": "Berasal dari luar daerah bikin aku minder di kampus. Lewat diskusi budaya di Sunda Kiwari, aku disambut hangat dan paham makna silih asih secara nyata.",
+    "foto": "assets/louis-prancis.jpg"
+  }
+]

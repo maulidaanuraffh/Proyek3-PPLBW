@@ -2,15 +2,13 @@
 <html lang="id"> 
 <head> 
   <meta charset="utf-8"> 
-  <meta name="viewport" 
-        content="width=device-width, initial-scale=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <title>Eksperimen DOM dan Event</title> 
   <link rel="stylesheet" href="css/style.css"> 
 </head> 
 <body> 
   <main class="container"> 
-    <section class="praktikum-card" 
-             aria-labelledby="judul-utama"> 
+    <section class="praktikum-card" aria-labelledby="judul-utama"> 
       <p class="label">Eksperimen 2</p> 
       <h1 id="judul-utama">Latihan DOM dan Event</h1> 
   
@@ -36,6 +34,55 @@
         </button> 
       </div> 
     </section> 
+
+    <section class="accordion-section" aria-label="FAQ Accordion">
+      <h2>Independent Challenge 2: FAQ</h2>
+      <div class="accordion">
+        
+        <!-- Item FAQ 1 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="faq-ans-1">
+              Apa itu Vanilla JavaScript?
+            </button>
+          </h3>
+          <div id="faq-ans-1" class="accordion-panel" role="region" hidden>
+            <div class="accordion-content">
+              <p>Vanilla JavaScript adalah istilah untuk penggunaan bahasa pemrograman JavaScript murni tanpa menggunakan library tambahan seperti jQuery atau framework seperti React dan Vue.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item FAQ 2 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="faq-ans-2">
+              Mengapa preventDefault() sangat penting pada formulir?
+            </button>
+          </h3>
+          <div id="faq-ans-2" class="accordion-panel" role="region" hidden>
+            <div class="accordion-content">
+              <p>Fungsi preventDefault() digunakan untuk menghentikan aksi bawaan browser, seperti memuat ulang halaman ketika tombol submit ditekan, sehingga proses validasi dapat ditangani terlebih dahulu oleh JavaScript.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item FAQ 3 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="faq-ans-3">
+              Apa perbedaan data bertipe null dan undefined?
+            </button>
+          </h3>
+          <div id="faq-ans-3" class="accordion-panel" role="region" hidden>
+            <div class="accordion-content">
+              <p>Null adalah nilai kosong yang sengaja diberikan pada suatu variabel, sedangkan undefined berarti sebuah variabel telah dideklarasikan tetapi belum memiliki nilai apa pun.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </main> 
   
   <script src="js/app.js" defer></script> 
