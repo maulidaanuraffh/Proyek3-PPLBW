@@ -1,0 +1,894 @@
+/* ---------- 1. Design tokens ---------- */
+
+:root {
+  --warna-utama: #2e5e44;
+  --warna-utama-poek: #1f4230;
+  --warna-aksen: #d98e14;
+  --warna-aksen-poek: #b87508;
+  --warna-teks: #14201a;
+  --warna-teks-lembut: #4b5a51;
+  --warna-latar: #ecefe6;
+  --warna-bidang: #ffffff;
+  --warna-garis: #cfd8c6;
+  --warna-error: #b91c1c;
+  --warna-sukses: #166534;
+
+  --spasi: 1rem;
+  --spasi-sedang: 1.5rem;
+  --spasi-besar: 3rem;
+
+  --radius: 10px;
+  --lebar-konten: 1120px;
+  --transisi: 200ms ease;
+
+  --font-judul: "Lora", Georgia, "Times New Roman", serif;
+  --font-teks: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-aksara: "Noto Sans Sundanese", "Noto Sans", sans-serif;
+}
+
+/* ---------- 2. Reset ringan ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1, h2, h3,
+p, ul, ol, dl, dd, figure, blockquote {
+  margin: 0;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+body {
+  font: 1rem/1.65 var(--font-teks);
+  color: var(--warna-teks);
+  background-color: var(--warna-latar);
+  overflow-wrap: break-word;
+  transition: background var(--transisi), color var(--transisi);
+}
+
+/* ---------- 3. Tipografi ---------- */
+
+h1, h2, h3 {
+  font-family: var(--font-judul);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--warna-utama-poek);
+}
+
+h1 {
+  font-size: clamp(1.9rem, 5.5vw, 3.1rem);
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  max-width: 62ch;
+}
+
+b {
+  font-weight: 600;
+}
+
+a {
+  color: var(--warna-utama);
+}
+
+/* ---------- 4. Utilitas ---------- */
+
+.container {
+  width: min(100% - 2rem, var(--lebar-konten));
+  margin-inline: auto;
+}
+
+.narrow {
+  max-width: 46rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--warna-bidang);
+  padding: var(--spasi);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--warna-aksen);
+  outline-offset: 3px;
+}
+
+/* ---------- 5. Header dan navigasi ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--warna-bidang);
+  border-bottom: 1px solid var(--warna-garis);
+  transition: background var(--transisi);
+}
+
+.header-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-block: 0.9rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-judul);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--warna-utama-poek);
+  text-decoration: none;
+}
+
+.brand-mark {
+  font-family: var(--font-aksara);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--warna-aksen);
+}
+
+/* Hamburger button — visible only on mobile */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--warna-garis);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.hamburger-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--warna-teks);
+  border-radius: 2px;
+  transition: transform var(--transisi), opacity var(--transisi);
+}
+
+/* Animated X when open */
+.nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Nav list — hidden on mobile until toggled */
+.nav-list {
+  display: none;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+  padding-top: 0.5rem;
+}
+
+.nav-list.is-open {
+  display: flex;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.6rem 0;
+  color: var(--warna-teks-lembut);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover {
+  color: var(--warna-utama);
+  border-bottom-color: var(--warna-aksen);
+}
+
+/* Theme toggle button */
+.btn-tema {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  background: var(--warna-latar);
+  color: var(--warna-teks-lembut);
+  border: 1px solid var(--warna-garis);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background var(--transisi), color var(--transisi);
+}
+
+.btn-tema:hover {
+  background: var(--warna-garis);
+}
+
+/* ---------- 6. Tombol ---------- */
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.4rem;
+  background: var(--warna-utama);
+  color: var(--warna-bidang);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transisi);
+}
+
+.button:hover {
+  background: var(--warna-utama-poek);
+}
+
+.button-terang {
+  background: var(--warna-aksen);
+  color: var(--warna-teks);
+}
+
+.button-terang:hover {
+  background: var(--warna-aksen-poek);
+  color: var(--warna-bidang);
+}
+
+.button-kecil {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.link-quiet {
+  color: var(--warna-teks-lembut);
+}
+
+/* ---------- 7. Hero ---------- */
+
+.hero {
+  padding-block: var(--spasi-besar);
+}
+
+.hero-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spasi-besar);
+}
+
+.hero-lead {
+  margin-top: var(--spasi-sedang);
+  font-size: 1.1rem;
+  color: var(--warna-teks-lembut);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spasi-sedang);
+  margin-top: var(--spasi-sedang);
+}
+
+/* Panel spesimen aksara */
+.specimen {
+  background: var(--warna-bidang);
+  border: 1px solid var(--warna-garis);
+  border-top: 4px solid var(--warna-aksen);
+  border-radius: var(--radius);
+  padding: var(--spasi-sedang);
+  transition: background var(--transisi), border-color var(--transisi);
+}
+
+.specimen-word {
+  font-family: var(--font-aksara);
+  font-size: clamp(2.8rem, 12vw, 4.5rem);
+  line-height: 1.4;
+  color: var(--warna-utama);
+  text-align: center;
+  margin-bottom: var(--spasi);
+}
+
+.specimen-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  padding-bottom: var(--spasi-sedang);
+  border-bottom: 1px solid var(--warna-garis);
+}
+
+.specimen-parts li {
+  flex: 0 1 5rem;
+  text-align: center;
+  padding: 0.5rem 0.3rem;
+  background: var(--warna-latar);
+  border-radius: 6px;
+  transition: background var(--transisi);
+}
+
+.glyph {
+  display: block;
+  font-family: var(--font-aksara);
+  font-size: 1.7rem;
+  line-height: 1.5;
+  color: var(--warna-utama);
+}
+
+.latin {
+  font-size: 0.9rem;
+  color: var(--warna-teks-lembut);
+}
+
+.specimen figcaption {
+  margin-top: var(--spasi-sedang);
+  font-size: 0.95rem;
+  color: var(--warna-teks-lembut);
+}
+
+/* ---------- 8. Section umum ---------- */
+
+.section {
+  padding-block: var(--spasi-besar);
+}
+
+.section-alt {
+  background: var(--warna-bidang);
+  border-block: 1px solid var(--warna-garis);
+  transition: background var(--transisi), border-color var(--transisi);
+}
+
+.section-lead {
+  margin-top: 0.75rem;
+  color: var(--warna-teks-lembut);
+}
+
+/* ---------- 9. Filter bar ---------- */
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: var(--spasi-sedang);
+}
+
+.filter-bar label {
+  font-size: 0.95rem;
+  color: var(--warna-teks-lembut);
+}
+
+.filter-bar select {
+  appearance: none;
+  padding: 0.55rem 2.2rem 0.55rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 2px solid var(--warna-garis);
+  border-radius: 8px;
+  background-color: var(--warna-bidang);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234b5a51' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  color: var(--warna-teks);
+  cursor: pointer;
+  transition: border-color var(--transisi), background-color var(--transisi), box-shadow var(--transisi);
+}
+
+/* ---------- 10. Kartu divisi (Flexbox, rendered by JS) ---------- */
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: var(--spasi-sedang);
+  margin-top: var(--spasi-sedang);
+}
+
+.card {
+  flex: 1 1 15rem;
+  min-width: 0;
+  background: var(--warna-bidang);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius);
+  padding: var(--spasi-sedang);
+  transition: background var(--transisi), border-color var(--transisi);
+}
+
+.card h3 {
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--warna-aksen);
+}
+
+.badge-kategori {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--warna-latar);
+  color: var(--warna-utama);
+  border-radius: 4px;
+  transition: background var(--transisi);
+}
+
+.card p {
+  margin-top: 0.7rem;
+  font-size: 0.98rem;
+  color: var(--warna-teks-lembut);
+}
+
+.pesan-kosong {
+  padding: var(--spasi-sedang);
+  text-align: center;
+  color: var(--warna-teks-lembut);
+  font-style: italic;
+}
+
+/* ---------- 11. Jadwal ---------- */
+
+.jadwal {
+  margin-top: var(--spasi-besar);
+  border-top: 1px solid var(--warna-garis);
+}
+
+.jadwal-baris {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-block: var(--spasi-sedang);
+  border-bottom: 1px solid var(--warna-garis);
+}
+
+.jadwal dt {
+  font-family: var(--font-judul);
+  font-weight: 600;
+  color: var(--warna-utama);
+  flex: 0 0 12rem;
+}
+
+.jadwal dd {
+  margin: 0;
+  color: var(--warna-teks-lembut);
+}
+
+/* ---------- 12. Status bar (async loading) ---------- */
+
+.status-bar {
+  margin-block: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--warna-garis);
+  background: var(--warna-bidang);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+  color: var(--warna-teks-lembut);
+  transition: background var(--transisi), border-color var(--transisi);
+}
+
+.status-bar[data-state="loading"] {
+  border-left-color: var(--warna-aksen);
+}
+
+.status-bar[data-state="success"] {
+  border-left-color: var(--warna-sukses);
+}
+
+.status-bar[data-state="error"] {
+  border-left-color: var(--warna-error);
+}
+
+/* ---------- 13. Testimoni (async loaded) ---------- */
+
+.testimoni-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spasi-sedang);
+  margin-top: var(--spasi-sedang);
+}
+
+.testimoni-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spasi);
+  background: var(--warna-bidang);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius);
+  padding: var(--spasi-sedang);
+  transition: background var(--transisi), border-color var(--transisi);
+}
+
+.testimoni-item .cerita-foto {
+  margin: 0;
+}
+
+.testimoni-item .cerita-foto img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--warna-garis);
+}
+
+.testimoni-item .kutipan {
+  padding-left: var(--spasi);
+  border-left: 3px solid var(--warna-aksen);
+}
+
+.testimoni-item .kutipan p {
+  font-family: var(--font-judul);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--warna-utama-poek);
+}
+
+.testimoni-item .kutipan footer {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--warna-teks-lembut);
+}
+
+/* ---------- 14. FAQ Accordion ---------- */
+
+.accordion {
+  margin-top: var(--spasi-sedang);
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--warna-garis);
+}
+
+.accordion-item h3 {
+  margin: 0;
+}
+
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 0;
+  font-family: var(--font-teks);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--warna-teks);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  gap: 1rem;
+  transition: color var(--transisi);
+}
+
+.accordion-trigger:hover {
+  color: var(--warna-utama);
+}
+
+.accordion-trigger::after {
+  content: "+";
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--warna-aksen);
+  transition: transform var(--transisi);
+}
+
+.accordion-trigger[aria-expanded="true"]::after {
+  content: "−";
+}
+
+.accordion-panel {
+  overflow: hidden;
+}
+
+.accordion-panel p {
+  padding-bottom: 1rem;
+  color: var(--warna-teks-lembut);
+  line-height: 1.7;
+}
+
+/* ---------- 15. Form pendaftaran ---------- */
+
+.form-daftar {
+  margin-top: var(--spasi-sedang);
+}
+
+.form-field {
+  margin-bottom: var(--spasi);
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  color: var(--warna-bidang);
+}
+
+.form-field input,
+.form-field select {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid var(--warna-garis);
+  border-radius: 6px;
+  background: var(--warna-bidang);
+  color: var(--warna-teks);
+  transition: border-color var(--transisi), background var(--transisi);
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  border-color: var(--warna-aksen);
+}
+
+.form-field input[aria-invalid="true"],
+.form-field select[aria-invalid="true"] {
+  border-color: var(--warna-error);
+  outline-color: var(--warna-error);
+}
+
+.error {
+  display: block;
+  min-height: 1.3rem;
+  margin-top: 0.25rem;
+  font-size: 0.88rem;
+  color: #ff9b9b;
+}
+
+/* ---------- 16. CTA penutup ---------- */
+
+.cta {
+  background: var(--warna-utama-poek);
+  color: var(--warna-latar);
+}
+
+.cta h2 {
+  color: var(--warna-bidang);
+}
+
+.cta p {
+  margin-top: var(--spasi);
+  color: #d6e0d8;
+}
+
+.cta-catatan {
+  font-size: 0.95rem;
+}
+
+/* ---------- 17. Footer ---------- */
+
+.site-footer {
+  background: var(--warna-bidang);
+  border-top: 1px solid var(--warna-garis);
+  padding-block: var(--spasi-sedang);
+  transition: background var(--transisi), border-color var(--transisi);
+}
+
+.footer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem var(--spasi-sedang);
+  font-size: 0.95rem;
+  color: var(--warna-teks-lembut);
+}
+
+/* ---------- 18. Back to top ---------- */
+
+.back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  font-size: 1.3rem;
+  line-height: 1;
+  background: var(--warna-utama);
+  color: var(--warna-bidang);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transisi), visibility var(--transisi), background var(--transisi);
+  z-index: 40;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: var(--warna-utama-poek);
+}
+
+/* ---------- 19. Dark theme ---------- */
+
+body.dark-theme {
+  --warna-teks: #e0e7e2;
+  --warna-teks-lembut: #a8b5ad;
+  --warna-latar: #0f1a13;
+  --warna-bidang: #1a2b20;
+  --warna-garis: #2e4237;
+  --warna-utama-poek: #8ec4a2;
+}
+
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3 {
+  color: #c8e6d2;
+}
+
+body.dark-theme .brand {
+  color: #c8e6d2;
+}
+
+body.dark-theme .nav-link {
+  color: var(--warna-teks-lembut);
+}
+
+body.dark-theme .nav-link:hover {
+  color: var(--warna-aksen);
+}
+
+body.dark-theme .hamburger-line {
+  background: var(--warna-teks);
+}
+
+body.dark-theme .accordion-trigger {
+  color: var(--warna-teks);
+}
+
+body.dark-theme .btn-tema {
+  background: var(--warna-garis);
+  color: var(--warna-teks);
+  border-color: #3d5a49;
+}
+
+body.dark-theme .filter-bar select {
+  background: var(--warna-bidang);
+  color: var(--warna-teks);
+  border-color: var(--warna-garis);
+}
+
+body.dark-theme .form-field input,
+body.dark-theme .form-field select {
+  background: #142119;
+  color: var(--warna-teks);
+  border-color: var(--warna-garis);
+}
+
+body.dark-theme .form-field label {
+  color: #d6e0d8;
+}
+
+body.dark-theme .cta {
+  background: #0a1510;
+}
+
+body.dark-theme .testimoni-item .kutipan p {
+  color: #c8e6d2;
+}
+
+body.dark-theme .status-bar {
+  background: var(--warna-bidang);
+}
+
+/* ---------- 20. Responsive ---------- */
+
+@media (min-width: 640px) {
+  .card-list {
+    flex-direction: row;
+  }
+
+  .jadwal-baris {
+    flex-direction: row;
+    gap: var(--spasi-sedang);
+  }
+
+  .testimoni-item {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .testimoni-item .cerita-foto {
+    flex: 0 0 35%;
+  }
+
+  .testimoni-item .kutipan {
+    flex: 1 1 auto;
+  }
+}
+
+@media (min-width: 900px) {
+  /* Show nav inline, hide hamburger */
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem 1.3rem;
+    width: auto;
+    padding-top: 0;
+  }
+
+  .nav-link {
+    padding: 0.35rem 0;
+  }
+
+  /* Hero two-column */
+  .hero-grid {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .hero-text {
+    flex: 1 1 58%;
+  }
+
+  .specimen {
+    flex: 1 1 42%;
+    min-width: 0;
+  }
+}
+
+/* ---------- 21. Preferensi pengguna ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
