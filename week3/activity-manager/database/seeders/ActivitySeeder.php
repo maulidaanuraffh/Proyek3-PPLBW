@@ -27,6 +27,33 @@ class ActivitySeeder extends Seeder
                 'created_at' => now(), 
                 'updated_at' => now(), 
             ], 
+            [
+                'title'         => 'Praktikum Laravel Dasar',
+                'description'   => 'Membangun CRUD sederhana menggunakan framework Laravel.',
+                'activity_date' => '2026-09-28',
+                'category'      => 'Praktikum',
+                'status'        => 'Ongoing',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'title'         => 'Pengenalan HTML dan CSS',
+                'description'   => 'Pengenalan struktur dokumen HTML dan dasar-dasar styling CSS.',
+                'activity_date' => '2026-09-07',
+                'category'      => 'Praktikum',
+                'status'        => 'Done',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
+                'title'         => 'Vanilla JavaScript dan DOM',
+                'description'   => 'Interaktivitas web menggunakan JavaScript murni tanpa framework.',
+                'activity_date' => '2026-09-14',
+                'category'      => 'Praktikum',
+                'status'        => 'Done',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
         ]); 
     }
 }
