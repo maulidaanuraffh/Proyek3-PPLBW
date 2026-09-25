@@ -1,0 +1,7 @@
+organization=maulidaanuraffh
+projectKey=maulidaanuraffh_Proyek3-PPLBW
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.108320
+dashboardUrl=https://sonarcloud.io/dashboard?id=maulidaanuraffh_Proyek3-PPLBW
+ceTaskId=AaDakSvMkiisMh1tw_6v
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AaDakSvMkiisMh1tw_6v

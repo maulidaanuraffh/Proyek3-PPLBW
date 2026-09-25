@@ -24,12 +24,14 @@ Proyek3-PPLBW/
 │       ├── praktikum-modul01-017-Maulida/  
 │       ├── README.md
 │       └── index.html ← mini project
-└── week2/
-    ├── eksperimen-2-dom-event/
-    ├── eksperimen-3-async/
-    └── eksperimen1
+├── week2/
+│   ├── eksperimen-2-dom-event/
+│   ├── eksperimen-3-async/
+│   └── eksperimen1
+└── week3/
+    └── activity-manager/
 ```
 
 ---
 
-*Terakhir diperbarui: 14 September 2026*
+*Terakhir diperbarui: 26 September 2026*
