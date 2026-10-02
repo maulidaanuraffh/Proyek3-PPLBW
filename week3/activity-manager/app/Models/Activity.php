@@ -16,7 +16,6 @@ class Activity extends Model
         'description',
         'location',
         'capacity',
-        'activity_date',
         'start_at',
         'end_at',
         'status',

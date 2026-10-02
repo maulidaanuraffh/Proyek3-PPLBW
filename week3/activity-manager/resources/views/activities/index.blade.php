@@ -81,7 +81,7 @@
                     {{ $activity->title }}
                 </a>
             </h2>
-            <p>{{ $activity->activity_date->format('d M Y') }}</p>
+            <p>{{ ($activity->activity_date ?? $activity->start_at)?->format('d M Y') }}</p>
             <p>
                 Kategori: {{ $activity->category->name }} &nbsp;|&nbsp;
                 <span class="badge badge-{{ strtolower($activity->status) }}">

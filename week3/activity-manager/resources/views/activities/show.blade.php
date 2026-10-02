@@ -22,7 +22,7 @@
         </div>
 
         <p class="detail-label">Tanggal Kegiatan</p>
-        <p class="detail-value">{{ $activity->activity_date->format('d M Y') }}</p>
+        <p class="detail-value">{{ ($activity->activity_date ?? $activity->start_at)?->format('d M Y') }}</p>
 
         <p class="detail-label">Kategori</p>
         <p class="detail-value">{{ $activity->category->name }}</p>

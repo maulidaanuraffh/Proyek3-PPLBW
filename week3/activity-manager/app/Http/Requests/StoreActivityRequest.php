@@ -22,7 +22,6 @@ class StoreActivityRequest extends FormRequest
             'description' => ['nullable', 'string', 'max:1000'],
             'location'    => ['nullable', 'string', 'max:150'],
             'capacity'    => ['required', 'integer', 'min:1', 'max:500'],
-            'activity_date' => ['required', 'date'],
             'start_at'    => ['required', 'date'],
             'end_at'      => ['required', 'date', 'after_or_equal:start_at'],
             'status'      => ['required', 'in:draft,published,completed'],

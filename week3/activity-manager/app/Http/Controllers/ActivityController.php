@@ -47,11 +47,9 @@ class ActivityController extends Controller
         return view('activities.create', compact('categories'));
     }
 
-    public function store(
-        StoreActivityRequest $request,
-        ActivityService $service
-    ): RedirectResponse {
-        $service->create($request->validated());
+    public function store(StoreActivityRequest $request): RedirectResponse
+    {
+        Activity::create($request->validated());
 
         return to_route('activities.index')
             ->with('success', 'Kegiatan berhasil dibuat.');

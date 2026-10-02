@@ -177,6 +177,7 @@
 
     <nav class="site-nav">
         <a href="{{ route('activities.index') }}">Activity Manager</a>
+        <a href="{{ route('categories.index') }}" style="color:#e2e8f0; text-decoration:none; margin-left:1.5rem;">Kategori</a>
     </nav>
 
     <div class="container">

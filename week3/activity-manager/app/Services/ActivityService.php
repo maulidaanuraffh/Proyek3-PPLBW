@@ -10,9 +10,9 @@ class ActivityService
     // Matriks transisi yang diizinkan:
     // key = status saat ini, value = daftar status yang boleh dituju
     private const TRANSITIONS = [
-        'Planned' => ['Planned', 'Ongoing'],
-        'Ongoing' => ['Ongoing', 'Done'],
-        'Done'    => ['Done'],
+        'draft'     => ['draft', 'published'],
+        'published' => ['published', 'completed'],
+        'completed' => ['completed'],
     ];
 
     public function create(array $data): Activity
