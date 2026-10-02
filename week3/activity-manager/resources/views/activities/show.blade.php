@@ -18,14 +18,43 @@
                     @method('DELETE')
                     <button type="submit" class="btn-danger">Hapus</button>
                 </form>
+
+                @if ($activity->status === 'draft')
+                    <form method="POST"
+                        action="{{ route('activities.publish', $activity) }}"
+                        style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn-submit"
+                                onclick="return confirm('Publikasikan kegiatan ini?')">
+                            Publikasikan
+                        </button>
+                    </form>
+                @endif
+
+                @if ($activity->status === 'published')
+                    <form method="POST"
+                        action="{{ route('activities.complete', $activity) }}"
+                        style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn-submit"
+                                onclick="return confirm('Tandai kegiatan ini sebagai selesai?')">
+                            Selesaikan
+                        </button>
+                    </form>
+                @endif
+                @if ($activity->status === 'published' && $activity->start_at?->gt(now()))
+                    <a href="{{ route('activities.register.create', $activity) }}"
+                    class="btn-submit">Daftar</a>
+                @endif
+
             </div>
         </div>
 
         <p class="detail-label">Tanggal Kegiatan</p>
-        <p class="detail-value">{{ $activity->activity_date->format('d M Y') }}</p>
+        <p class="detail-value">{{ ($activity->activity_date ?? $activity->start_at)?->format('d M Y') }}</p>
 
         <p class="detail-label">Kategori</p>
-        <p class="detail-value">{{ $activity->category }}</p>
+        <p class="detail-value">{{ $activity->category->name }}</p>
 
         <p class="detail-label">Status</p>
         <p class="detail-value">

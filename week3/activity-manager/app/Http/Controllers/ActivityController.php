@@ -15,28 +15,41 @@ class ActivityController extends Controller
 {
     public function index(Request $request): View
     {
-        $filterStatus   = $request->query('status');
-        $filterCategory = $request->query('category');
+        $categories = \App\Models\Category::all();
 
         $activities = Activity::query()
-            ->ofStatus($filterStatus)
-            ->ofCategory($filterCategory)
-            ->orderBy('activity_date')
-            ->get();
+            ->with('category')
+            ->when($request->search, fn($q, $search) =>
+                $q->where(function ($q) use ($search) {
+                    $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('code', 'like', "%{$search}%");
+                })
+            )
+            ->when($request->category_id, fn($q, $id) =>
+                $q->where('category_id', $id)
+            )
+            ->when($request->status, fn($q, $status) =>
+                $q->where('status', $status)
+            )
+            ->when($request->sort === 'terlama',
+                fn($q) => $q->orderBy('start_at', 'asc'),
+                fn($q) => $q->orderBy('start_at', 'desc')
+            )
+            ->paginate(10)
+            ->withQueryString();
 
-        return view('activities.index', compact('activities', 'filterStatus', 'filterCategory'));
+        return view('activities.index', compact('activities', 'categories'));
     }
 
     public function create(): View
     {
-        return view('activities.create');
+        $categories = \App\Models\Category::all();
+        return view('activities.create', compact('categories'));
     }
 
-    public function store(
-        StoreActivityRequest $request,
-        ActivityService $service
-    ): RedirectResponse {
-        $service->create($request->validated());
+    public function store(StoreActivityRequest $request): RedirectResponse
+    {
+        Activity::create($request->validated());
 
         return to_route('activities.index')
             ->with('success', 'Kegiatan berhasil dibuat.');
@@ -49,7 +62,8 @@ class ActivityController extends Controller
 
     public function edit(Activity $activity): View
     {
-        return view('activities.edit', compact('activity'));
+        $categories = \App\Models\Category::all();
+        return view('activities.edit', compact('activity', 'categories'));
     }
 
     public function update(
@@ -69,11 +83,53 @@ class ActivityController extends Controller
             ->with('success', 'Kegiatan berhasil diperbarui.');
     }
 
+    public function publish(Activity $activity, ActivityService $service): RedirectResponse
+    {
+        try {
+            $service->publish($activity);
+        } catch (\DomainException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
+        return to_route('activities.show', $activity)
+            ->with('success', 'Kegiatan berhasil dipublikasikan.');
+    }
+
+    public function complete(Activity $activity, ActivityService $service): RedirectResponse
+    {
+        try {
+            $service->complete($activity);
+        } catch (\DomainException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
+        return to_route('activities.show', $activity)
+            ->with('success', 'Kegiatan berhasil diselesaikan.');
+    }
+
     public function destroy(Activity $activity): RedirectResponse
     {
         $activity->delete();
 
         return to_route('activities.index')
             ->with('success', 'Kegiatan berhasil dihapus.');
+    }
+
+    public function trashed(): View
+    {
+        $activities = Activity::onlyTrashed()
+            ->with('category')
+            ->latest('deleted_at')
+            ->paginate(10);
+
+        return view('activities.trashed', compact('activities'));
+    }
+
+    public function restore(Activity $activity): RedirectResponse
+    {
+        $activity->restore();
+
+        return to_route('activities.index')
+            ->with('success', 'Kegiatan berhasil dipulihkan.');
     }
 }

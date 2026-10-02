@@ -20,20 +20,65 @@
 </div>
 
 <div class="form-group">
-    <label for="activity_date">Tanggal Kegiatan</label>
-    <input id="activity_date" name="activity_date" type="date"
-           value="{{ old('activity_date', isset($activity) ? $activity->activity_date->format('Y-m-d') : '') }}">
-    @error('activity_date')
+    <label for="category_id">Kategori</label>
+    <select id="category_id" name="category_id">
+        <option value="">-- Pilih Kategori --</option>
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}"
+                @selected(old('category_id', $activity->category_id ?? '') == $category->id)>
+                {{ $category->name }}
+            </option>
+        @endforeach
+    </select>
+    @error('category_id')
         <p class="error">{{ $message }}</p>
     @enderror
 </div>
 
 <div class="form-group">
-    <label for="category">Kategori</label>
-    <input id="category" name="category" type="text"
-           value="{{ old('category', $activity->category ?? '') }}"
-           maxlength="50">
-    @error('category')
+    <label for="code">Kode Kegiatan</label>
+    <input id="code" name="code" type="text"
+           value="{{ old('code', $activity->code ?? '') }}"
+           maxlength="30">
+    @error('code')
+        <p class="error">{{ $message }}</p>
+    @enderror
+</div>
+
+<div class="form-group">
+    <label for="location">Lokasi</label>
+    <input id="location" name="location" type="text"
+           value="{{ old('location', $activity->location ?? '') }}"
+           maxlength="150">
+    @error('location')
+        <p class="error">{{ $message }}</p>
+    @enderror
+</div>
+
+<div class="form-group">
+    <label for="capacity">Kapasitas</label>
+    <input id="capacity" name="capacity" type="number"
+           value="{{ old('capacity', $activity->capacity ?? '') }}"
+           min="1" max="500">
+    @error('capacity')
+        <p class="error">{{ $message }}</p>
+    @enderror
+</div>
+
+<div class="form-group">
+    <label for="start_at">Tanggal Mulai</label>
+    <input id="start_at" name="start_at" type="datetime-local"
+           value="{{ old('start_at', isset($activity->start_at) ? $activity->start_at?->format('Y-m-d\TH:i') : '') }}">
+    @error('start_at')
+        <p class="error">{{ $message }}</p>
+    @enderror
+</div>
+
+<div class="form-group">
+    <label for="end_at">Tanggal Selesai</label>
+    <input id="end_at" name="end_at" type="datetime-local"
+           value="{{ old('end_at', isset($activity->end_at) ? $activity->end_at?->format('Y-m-d\TH:i') : '') }}">
+    @error('end_at')
         <p class="error">{{ $message }}</p>
     @enderror
 </div>
@@ -41,7 +86,7 @@
 <div class="form-group">
     <label for="status">Status</label>
     <select id="status" name="status">
-        @foreach (['Planned', 'Ongoing', 'Done'] as $s)
+         @foreach (['draft', 'published', 'completed'] as $s)
             <option value="{{ $s }}"
                 @selected(old('status', $activity->status ?? 'Planned') === $s)>
                 {{ $s }}

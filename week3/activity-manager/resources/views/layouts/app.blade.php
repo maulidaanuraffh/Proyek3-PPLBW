@@ -171,19 +171,64 @@
             cursor: pointer;
         }
         .btn-danger:hover { background: #991b1b; }
+                /* ── Badge status baru ── */
+        .badge-draft      { background: #f3f4f6; color: #374151; }
+        .badge-published  { background: #dbeafe; color: #1d4ed8; }
+        .badge-completed  { background: #dcfce7; color: #166534; }
+
+        /* ── Pagination ── */
+        .pagination {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-item .page-link {
+            display: inline-block;
+            padding: .45rem .85rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: .9rem;
+            text-decoration: none;
+            color: #1e3a5f;
+            background: #fff;
+        }
+
+        .page-item .page-link:hover {
+            background: #f3f4f6;
+            border-color: #d1d5db;
+        }
+
+        .page-item.active .page-link {
+            background: #1e3a5f;
+            border-color: #1e3a5f;
+            color: #fff;
+        }
+
+        .page-item.disabled .page-link {
+            color: #d1d5db;
+            background: #f9fafb;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
 
     <nav class="site-nav">
         <a href="{{ route('activities.index') }}">Activity Manager</a>
+        <a href="{{ route('categories.index') }}" style="color:#e2e8f0; text-decoration:none; margin-left:1.5rem;">Kategori</a>
     </nav>
 
     <div class="container">
         @if (session('success'))
             <div class="flash flash-success">{{ session('success') }}</div>
         @endif
-
+        @if (session('error'))
+            <div class="flash flash-error">{{ session('error') }}</div>
+        @endif
         @yield('content')
     </div>
 
