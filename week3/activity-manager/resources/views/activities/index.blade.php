@@ -92,4 +92,7 @@
     @empty
         <p class="empty">Belum ada kegiatan.</p>
     @endforelse
+    <div style="margin-top:1.5rem;">
+        {{ $activities->links() }}
+    </div>
 @endsection

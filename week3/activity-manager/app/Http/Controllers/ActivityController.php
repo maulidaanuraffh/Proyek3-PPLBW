@@ -83,6 +83,30 @@ class ActivityController extends Controller
             ->with('success', 'Kegiatan berhasil diperbarui.');
     }
 
+    public function publish(Activity $activity, ActivityService $service): RedirectResponse
+    {
+        try {
+            $service->publish($activity);
+        } catch (\DomainException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
+        return to_route('activities.show', $activity)
+            ->with('success', 'Kegiatan berhasil dipublikasikan.');
+    }
+
+    public function complete(Activity $activity, ActivityService $service): RedirectResponse
+    {
+        try {
+            $service->complete($activity);
+        } catch (\DomainException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
+        return to_route('activities.show', $activity)
+            ->with('success', 'Kegiatan berhasil diselesaikan.');
+    }
+
     public function destroy(Activity $activity): RedirectResponse
     {
         $activity->delete();

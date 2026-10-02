@@ -18,6 +18,12 @@ Route::post('/activities/{activity}/restore', [ActivityController::class, 'resto
 
 Route::resource('categories', CategoryController::class);
 
+Route::post('/activities/{activity}/publish', [ActivityController::class, 'publish'])
+    ->name('activities.publish');
+
+Route::post('/activities/{activity}/complete', [ActivityController::class, 'complete'])
+    ->name('activities.complete');
+
 Route::resource('activities', ActivityController::class);
 
 // EKSPERIMEN SEMENTARA - hapus setelah bukti diambil

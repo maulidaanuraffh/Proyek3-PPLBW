@@ -18,6 +18,30 @@
                     @method('DELETE')
                     <button type="submit" class="btn-danger">Hapus</button>
                 </form>
+
+                @if ($activity->status === 'draft')
+                    <form method="POST"
+                        action="{{ route('activities.publish', $activity) }}"
+                        style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn-submit"
+                                onclick="return confirm('Publikasikan kegiatan ini?')">
+                            Publikasikan
+                        </button>
+                    </form>
+                @endif
+
+                @if ($activity->status === 'published')
+                    <form method="POST"
+                        action="{{ route('activities.complete', $activity) }}"
+                        style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn-submit"
+                                onclick="return confirm('Tandai kegiatan ini sebagai selesai?')">
+                            Selesaikan
+                        </button>
+                    </form>
+                @endif
             </div>
         </div>
 
