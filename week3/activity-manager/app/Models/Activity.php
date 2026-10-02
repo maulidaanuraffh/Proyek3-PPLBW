@@ -19,6 +19,7 @@ class Activity extends Model
         'start_at',
         'end_at',
         'status',
+        'registered_count',
     ]; 
  
     protected function casts(): array 
@@ -55,6 +56,11 @@ class Activity extends Model
             in_array($category, $valid),
             fn($q) => $q->where('category', $category)
         );
+    }
+
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
     }
 
 }

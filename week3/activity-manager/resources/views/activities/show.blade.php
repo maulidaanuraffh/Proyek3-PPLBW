@@ -42,6 +42,11 @@
                         </button>
                     </form>
                 @endif
+                @if ($activity->status === 'published' && $activity->start_at?->gt(now()))
+                    <a href="{{ route('activities.register.create', $activity) }}"
+                    class="btn-submit">Daftar</a>
+                @endif
+
             </div>
         </div>
 

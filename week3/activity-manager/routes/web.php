@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RegistrationController;
 use App\Models\Activity;
 use Illuminate\Support\Facades\Route; 
 use Illuminate\Support\Facades\DB;
@@ -23,6 +24,12 @@ Route::post('/activities/{activity}/publish', [ActivityController::class, 'publi
 
 Route::post('/activities/{activity}/complete', [ActivityController::class, 'complete'])
     ->name('activities.complete');
+
+Route::get('/activities/{activity}/register', [RegistrationController::class, 'create'])
+    ->name('activities.register.create');
+
+Route::post('/activities/{activity}/register', [RegistrationController::class, 'store'])
+    ->name('activities.register.store');
 
 Route::resource('activities', ActivityController::class);
 
