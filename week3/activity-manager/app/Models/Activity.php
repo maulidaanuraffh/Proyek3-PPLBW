@@ -4,22 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Activity extends Model
 {
-     protected $fillable = [ 
-        'title', 
-        'description', 
-        'activity_date', 
-        'category', 
-        'status', 
+    use SoftDeletes;
+    protected $fillable = [ 
+        'category_id',
+        'code',
+        'title',
+        'description',
+        'location',
+        'capacity',
+        'activity_date',
+        'start_at',
+        'end_at',
+        'status',
     ]; 
  
     protected function casts(): array 
     { 
         return [ 
             'activity_date' => 'date', 
+            'start_at'      => 'datetime',
+            'end_at'        => 'datetime',
         ]; 
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     // Local scope untuk filter status
@@ -43,4 +57,5 @@ class Activity extends Model
             fn($q) => $q->where('category', $category)
         );
     }
+
 }

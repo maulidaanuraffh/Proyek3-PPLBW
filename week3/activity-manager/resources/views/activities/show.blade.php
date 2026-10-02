@@ -25,7 +25,7 @@
         <p class="detail-value">{{ $activity->activity_date->format('d M Y') }}</p>
 
         <p class="detail-label">Kategori</p>
-        <p class="detail-value">{{ $activity->category }}</p>
+        <p class="detail-value">{{ $activity->category->name }}</p>
 
         <p class="detail-label">Status</p>
         <p class="detail-value">

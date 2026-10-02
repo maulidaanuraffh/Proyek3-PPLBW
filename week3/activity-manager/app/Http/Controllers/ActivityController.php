@@ -15,21 +15,36 @@ class ActivityController extends Controller
 {
     public function index(Request $request): View
     {
-        $filterStatus   = $request->query('status');
-        $filterCategory = $request->query('category');
+        $categories = \App\Models\Category::all();
 
         $activities = Activity::query()
-            ->ofStatus($filterStatus)
-            ->ofCategory($filterCategory)
-            ->orderBy('activity_date')
-            ->get();
+            ->with('category')
+            ->when($request->search, fn($q, $search) =>
+                $q->where(function ($q) use ($search) {
+                    $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('code', 'like', "%{$search}%");
+                })
+            )
+            ->when($request->category_id, fn($q, $id) =>
+                $q->where('category_id', $id)
+            )
+            ->when($request->status, fn($q, $status) =>
+                $q->where('status', $status)
+            )
+            ->when($request->sort === 'terlama',
+                fn($q) => $q->orderBy('start_at', 'asc'),
+                fn($q) => $q->orderBy('start_at', 'desc')
+            )
+            ->paginate(10)
+            ->withQueryString();
 
-        return view('activities.index', compact('activities', 'filterStatus', 'filterCategory'));
+        return view('activities.index', compact('activities', 'categories'));
     }
 
     public function create(): View
     {
-        return view('activities.create');
+        $categories = \App\Models\Category::all();
+        return view('activities.create', compact('categories'));
     }
 
     public function store(
@@ -49,7 +64,8 @@ class ActivityController extends Controller
 
     public function edit(Activity $activity): View
     {
-        return view('activities.edit', compact('activity'));
+        $categories = \App\Models\Category::all();
+        return view('activities.edit', compact('activity', 'categories'));
     }
 
     public function update(
@@ -75,5 +91,23 @@ class ActivityController extends Controller
 
         return to_route('activities.index')
             ->with('success', 'Kegiatan berhasil dihapus.');
+    }
+
+    public function trashed(): View
+    {
+        $activities = Activity::onlyTrashed()
+            ->with('category')
+            ->latest('deleted_at')
+            ->paginate(10);
+
+        return view('activities.trashed', compact('activities'));
+    }
+
+    public function restore(Activity $activity): RedirectResponse
+    {
+        $activity->restore();
+
+        return to_route('activities.index')
+            ->with('success', 'Kegiatan berhasil dipulihkan.');
     }
 }
